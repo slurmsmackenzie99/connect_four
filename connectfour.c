@@ -46,35 +46,38 @@ int main()
 
   while(again=='Y'||again=='y')
 {
- for(i=0;i<7;i++)
-        {
-          if(i==0)
-            printf("\n\n\n   %d %d %d %d %d %d %d  \n  ---------------\n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
-          if(i>0&&i<7)
-            printf(" | %d %d %d %d %d %d %d |\n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
-          if(i==6)
-            printf("  ---------------\n |               |\n\n\n");
-        }
+     for(i=0;i<7;i++)
+            {
+              if(i==0)
+                printf("\n\n\n   %d %d %d %d %d %d %d  \n  ---------------\n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
+              if(i>0&&i<7)
+                printf(" | %d %d %d %d %d %d %d |\n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
+              if(i==6)
+                printf("  ---------------\n |               |\n\n\n");
+            }
 
-
-      while(win==0)
+     while(win==0)
         {
-          ////////////////////////////////////////////////////////
           if(win==0)
             {
               printf("Player1:  ");
               scanf("%d", &move1);
               printf("\n\n");
-              while(move1<1||move1>7||(move1==1&&(row1[1]=='1'||row1[1]=='2'))||(move1==2&&(row2[1]=='1'||row2[1]=='2'))||(move1==3&&(row3[1]=='1'||row3[1]=='2')\
-                                                                                                                           )||(move1==4&&(row4[1]=='1'||row4[1]=='2'))|\
-|(move1==5&&(row5[1]=='1'||row5[1]=='2'))||(move1==6&&(row6[1]=='1'||row6[1]=='2'))||(move1==7&&(row7[1]=='1'||row7[1]=='2'\
-                                                                                                                                                                       \
-                                                                                                 )))
+              //illegal move detection
+              while(move1<1 || move1>7 || (move1==1 && (row1[1]=='1'||row1[1]=='2')) 
+              ||(move1==2&&(row2[1]=='1'||row2[1]=='2'))
+              ||(move1==3&&(row3[1]=='1'||row3[1]=='2'))
+              ||(move1==4&&(row4[1]=='1'||row4[1]=='2'))
+              ||(move1==5&&(row5[1]=='1'||row5[1]=='2'))
+              ||(move1==6&&(row6[1]=='1'||row6[1]=='2'))
+              ||(move1==7&&(row7[1]=='1'||row7[1]=='2')))
                 {
-                  printf("Can't let you move there!\n\n\nPlayer1:  ");
+                  printf("Can't let you move there! \n\n\n Player1:  ");
                   scanf("%d", &move1);
                 }
-              if(move1==1)
+
+                //start of legal move detection and placing '1' or '2' in the correct row
+              if(move1 == 1)
                 {
                   j=6;
                   while(row1[j]=='1'||row1[j]=='2')
@@ -87,7 +90,7 @@ int main()
                 {
                   j=6;
                   while(row2[j]=='1'||row2[j]=='2')
- {
+                    {
                       j--;
                     }
                   row2[j]='1';
@@ -107,7 +110,7 @@ int main()
                   while(row4[j]=='1'||row4[j]=='2')
                     {
                       j--;
-  }
+                    }
                   row4[j]='1';
                 }
               else if(move1==5)
@@ -128,7 +131,7 @@ int main()
                     }
                   row6[j]='1';
                 }
-  else if(move1==7)
+              else if(move1==7)
                 {
                   j=6;
                   while(row7[j]=='1'||row7[j]=='2')
@@ -136,66 +139,118 @@ int main()
                       j--;
                     }
                   row7[j]='1';
-
-
                 }
-              //      printf('*', move1);
+                // end of legal move detection and placing '1' or '2' in the correct row
+              // printf('*', move1);
             }
-          ////////////////////////////////////////////////////////
-          for(i=0;i<7;++i)
-            {
-              if(i==0)
-                printf("\n\n\n   %d %d %d %d %d %d %d  \n  ---------------\n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
-              if(i>0&&i<7)
+          //displaying the game board
+          for(i=0;i<7;++i){
+              if(i==0) {
+                // i believe that using d as a placeholder is causing display of number 49 to 55 in the row column, instead of 1-7
+                // however, replacing it with c placeholder (char) doesn't fix the issue
+                printf("\n\n\n   %d %d %d %d %d %d %d \n --------------- \n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
+                }
+              if(i>0 && i<7)
                 printf(" | %d %d %d %d %d %d %d |\n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
+              //displaying end of the board
               if(i==6)
-                printf("  ---------------\n |               |\n\n\n");
-   }
-
-
-          for(i=6;i>0;--i)
-            {
-              if((row1[i]=='1'&&row2[i]=='1'&&row3[i]=='1'&&row4[i]=='1')||(row5[i]=='1'&&row2[i]=='1'&&row3[i]=='1'&&row4[i]=='1')||(row5[i]=='1'&&row6[i]==\
-                                                                                                                                      '1'&&row3[i]=='1'&&row4[i]=='1')|\
-|(row5[i]=='1'&&row6[i]=='1'&&row7[i]=='1'&&row4[i]=='1'))
-                win=1; //for horizontal
+                printf("  ---------------\n");
             }
-          for(i=6;i>2;--i)
-            {
-              if((row1[i]=='1'&&row1[i-1]=='1'&&row1[i-2]=='1'&&row1[i-3]=='1')||(row2[i]=='1'&&row2[i-1]=='1'&&row2[i-2]=='1'&&row2[i-3]=='1')||(row3[i]=='1\
-'&&row3[i-1]=='1'&&row3[i-2]=='1'&&row3[i-3]=='1')||(row4[i]=='1'&&row4[i-1]=='1'&&row4[i-2]=='1'&&row4[i-3]=='1')||(row5[i]=='1'&&row5[i-1]=='1'&&row5[i-2]=='1'&&row5\
-\
-                                                                                                                     [i-3]=='1')||(row6[i]=='1'&&row6[i-1]=='1'&&row6[i\
--2]=='1'&&row6[i-3]=='1')||(row7[i]=='1'&&row7[i-1]=='1'&&row7[i-2]=='1'&&row7[i-3]=='1'))
-                win=1; //for vertical
-              if((row1[i]=='1'&&row2[i-1]=='1'&&row3[i-2]=='1'&&row4[i-3]=='1')||(row2[i]=='1'&&row3[i-1]=='1'&&row4[i-2]=='1'&&row5[i-3]=='1')||(row3[i]=='1\
-'&&row4[i-1]=='1'&&row5[i-2]=='1'&&row6[i-3]=='1')||(row4[i]=='1'&&row5[i-1]=='1'&&row6[i-2]=='1'&&row7[i-3]=='1'))
-                win=1; //for diagonally up right
-if((row7[i]=='1'&&row6[i-1]=='1'&&row5[i-2]=='1'&&row4[i-3]=='1')||(row6[i]=='1'&&row5[i-1]=='1'&&row4[i-2]=='1'&&row3[i-3]=='1')||(row5[i]=='1\
-'&&row4[i-1]=='1'&&row3[i-2]=='1'&&row2[i-3]=='1')||(row4[i]=='1'&&row3[i-1]=='1'&&row2[i-2]=='1'&&row1[i-3]=='1'))
-                win=1; //for diagonally up left
+          //winning position 1
+          for(i=6;i>0;--i){
+              if(
+              //horizontal winning condition
+              //if first possibility
+              (row1[i]=='1' && row2[i]=='1' 
+              && row3[i]=='1' && row4[i]=='1')
+              //if second possibility
+              || (row5[i]=='1' && row2[i]=='1' 
+              && row3[i]=='1' && row4[i]=='1')
+              //if third possibility
+              ||(row5[i]=='1'&&row6[i]=='1'
+              &&row3[i]=='1'&&row4[i]=='1')
+              //if fourth possibility
+              ||(row5[i]=='1' && row6[i]=='1'
+              &&row7[i]=='1'&&row4[i]=='1'))
+              //then win
+               win=1;
             }
-          ////////////////////////////////////////////////////////
+          //winning position 2
+          for(i=6;i>2;--i){
+              if(
+              //vertical winning position
+              //if first possibility
+              (row1[i]=='1'&&row1[i-1]=='1'&&row1[i-2]=='1'&&row1[i-3]=='1')
+              //if second possibility
+              ||(row2[i]=='1'&&row2[i-1]=='1'&&row2[i-2]=='1'&&row2[i-3]=='1')
+              //if third possibility
+              ||(row3[i]=='1'&&row3[i-1]=='1'&&row3[i-2]=='1'&&row3[i-3]=='1')
+              //if fourth possibility
+              ||(row4[i]=='1'&&row4[i-1]=='1'&&row4[i-2]=='1'&&row4[i-3]=='1')
+              //if fifth possibility
+              ||(row5[i]=='1'&&row5[i-1]=='1'&&row5[i-2]=='1'&&row5[i-3]=='1')
+              //if sixth possibility
+              ||(row6[i]=='1'&&row6[i-1]=='1'&&row6[i-2]=='1'&&row6[i-3]=='1')
+              //if seventh possibility
+              ||(row7[i]=='1'&&row7[i-1]=='1'&&row7[i-2]=='1'&&row7[i-3]=='1'))
+              //then win
+               win=1;
+
+              if(
+              //diagonally up right winning position
+              //if first possibility
+              (row1[i]=='1'&&row2[i-1]=='1'&&row3[i-2]=='1'&&row4[i-3]=='1')
+              //if second possibility
+              ||(row2[i]=='1'&&row3[i-1]=='1'&&row4[i-2]=='1'&&row5[i-3]=='1')
+              //if third possibility
+              ||(row3[i]=='1'&&row4[i-1]=='1'&&row5[i-2]=='1'&&row6[i-3]=='1')
+              //if fourth possibility
+              ||(row4[i]=='1'&&row5[i-1]=='1'&&row6[i-2]=='1'&&row7[i-3]=='1'))
+              //then win
+                win=1;
+              if(
+              //diagonally up left winning position
+              //if first possibility
+              (row7[i]=='1'&&row6[i-1]=='1'&&row5[i-2]=='1'&&row4[i-3]=='1')
+              //if second possibility
+              ||(row6[i]=='1'&&row5[i-1]=='1'&&row4[i-2]=='1'&&row3[i-3]=='1')
+              //if third possibility
+              ||(row5[i]=='1'&&row4[i-1]=='1'&&row3[i-2]=='1'&&row2[i-3]=='1')
+              //if fourth possibility
+              ||(row4[i]=='1'&&row3[i-1]=='1'&&row2[i-2]=='1'&&row1[i-3]=='1'))
+              //then win
+                win=1;
+            }
+          //continuing the game if four not connected, prompting players for moves
           if(win==0)
             {
               printf("Player 2:  ");
               scanf("%d", &move1);
               printf("\n\n");
-              while(move1<1||move1>7||(move1==1&&(row1[1]=='1'||row1[1]=='2'))||(move1==2&&(row2[1]=='1'||row2[1]=='2'))||(move1==3&&(row3[1]=='1'||row3[1]=='2'))||(mo\
-ve1==4&&(row4[1]=='1'||row4[1]=='2'))||(move1==5&&(row5[1]=='1'||row5[1]=='2'))||(move1==6&&(row6[1]=='1'||row6[1]=='2'))||(move1==7&&(row7[1]=='1'||row7[1]=='2')))
+
+              //blocking the illegal moves
+              while(
+              move1<1||move1>7
+              ||(move1==1&&(row1[1]=='1'||row1[1]=='2'))
+              ||(move1==2&&(row2[1]=='1'||row2[1]=='2'))
+              ||(move1==3&&(row3[1]=='1'||row3[1]=='2'))
+              ||(move1==4&&(row4[1]=='1'||row4[1]=='2'))
+              ||(move1==5&&(row5[1]=='1'||row5[1]=='2'))
+              ||(move1==6&&(row6[1]=='1'||row6[1]=='2'))
+              ||(move1==7&&(row7[1]=='1'||row7[1]=='2')))
                 {
                   printf("Can't let you move there!\n\n\nPlayer 2:  ");
+                  //prompt for the move again
                   scanf("%d", &move1);
                 }
-
-
+              //if (user wants to place token in the first row) then try to place token starting from column 6, 
+              //if it's already taken, go up the column ladder
               if(move1==1)
                 {
                   j=6;
-                  while(row1[j]=='1'||row1[j]=='2')
- {
+                  while(row1[j]=='1'||row1[j]=='2'){
                       j--;
-                    }
+                   }
                   row1[j]='2';
                 }
               else if(move1==2)
@@ -212,7 +267,8 @@ ve1==4&&(row4[1]=='1'||row4[1]=='2'))||(move1==5&&(row5[1]=='1'||row5[1]=='2'))|
                   j=6;
                   while(row3[j]=='1'||row3[j]=='2')
                     {
-            }
+                    j--;
+                    }
                   row3[j]='2';
                 }
               else if(move1==4)
@@ -233,99 +289,99 @@ ve1==4&&(row4[1]=='1'||row4[1]=='2'))||(move1==5&&(row5[1]=='1'||row5[1]=='2'))|
                     }
                   row5[j]='2';
                 }
- else if(move1==6)
+              else if(move1==6)
                 {
                   j=6;
                   while(row6[j]=='1'||row6[j]=='2')
                     {
                       j--;
-                      {
+                      {//is this below necessary?
                         j--;
                       }
                       row6[j]='2';
                     }
                 }
-                  else if(move1==7)
+              else if(move1==7)
                     {
-if(row7[1]=='1'||row7[1]=='2')
+                       if(row7[1]=='1'||row7[1]=='2'){
                         printf("nope");
-                      else
-                        {
+                        }
+                       else{
                           j=6;
                           while(row7[j]=='1'||row7[j]=='2')
- {
+                            {
                               j--;
                             }
                           row7[j]='2';
                         }
                     }
-
-
-
-
-              // printf('X', move1);
             }
-              ////////////////////////////////////////////////////////
-              for( i=0;i<7;++i)
+            for(i=0;i<7;++i)
                 {
+                  //displaying the board
                   if(i==0)
                     printf("\n\n\n   %d %d %d %d %d %d %d  \n  ---------------\n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
-                  if(i>0&&i<7)
+                  if(i>0 && i<7)
                     printf(" | %d %d %d %d %d %d %d |\n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
                   if(i==6)
-                    printf("  ---------------\n |               |\n\n\n");
+                    printf("  ---------------\n");
                 }
-for(i=6;i>0;--i)
+            for(i=6;i>0;--i)
                 {
-    if((row1[i]=='2'&&row2[i]=='2'&&row3[i]=='2'&&row4[i]=='2')||(row5[i]=='2'&&row2[i]=='2'&&row3[i]=='2'&&row4[i]=='2')||(row5[i]=='2'&&row6[i]=='2'&&row3[i]=='2'&&r\
-ow4[i]=='2')||(row5[i]=='2'&&row6[i]=='2'&&row7[i]=='2'&&row4[i]=='2'))
-                    win=2; //for horizontal
+                  //condition to win for horizontal
+                  if((row1[i]=='2'&&row2[i]=='2'&&row3[i]=='2'&&row4[i]=='2')
+                  ||(row5[i]=='2'&&row2[i]=='2'&&row3[i]=='2'&&row4[i]=='2')
+                  ||(row5[i]=='2'&&row6[i]=='2'&&row3[i]=='2'&&row4[i]=='2')
+                  ||(row5[i]=='2'&&row6[i]=='2'&&row7[i]=='2'&&row4[i]=='2'))
+                    win=2;
                 }
               for(i=6;i>2;--i)
                 {
-                  if((row1[i]=='2'&&row1[i-1]=='2'&&row1[i-2]=='2'&&row1[i-3]=='2')||(row2[i]=='2'&&row2[i-1]=='2'&&row2[i-2]=='2'&&row2[i-3]=='2')||(row3[i]=='2'&&row\
-3[i-1]=='2'&&row3[i-2]=='2'&&row3[i-3]=='2')||(row4[i]=='2'&&row4[i-1]=='2'&&row4[i-2]=='2'&&row4[i-3]=='2')||(row5[i]=='2'&&row5[i-1]=='2'&&row5[i-2]=='2'&&row5[i-3]=\
-='2')||(row6[i]=='2'&&row6[i-1]=='2'&&row6[i-2]=='2'&&row6[i-3]=='2')||(row7[i]=='2'&&row7[i-1]=='2'&&row7[i-2]=='2'&&row7[i-3]=='2'))
-                    win=2; //for vertical
-                  if((row1[i]=='2'&&row2[i-1]=='2'&&row3[i-2]=='2'&&row4[i-3]=='2')||(row2[i]=='2'&&row3[i-1]=='2'&&row4[i-2]=='2'&&row5[i-3]=='2')||(row3[i]=='2'&&row\
-4[i-1]=='2'&&row5[i-2]=='2'&&row6[i-3]=='2')||(row4[i]=='2'&&row5[i-1]=='2'&&row6[i-2]=='2'&&row7[i-3]=='2'))
-                    win=2; //for diagonally up right
-                  if((row7[i]=='2'&&row6[i-1]=='2'&&row5[i-2]=='2'&&row4[i-3]=='2')||(row6[i]=='2'&&row5[i-1]=='2'&&row4[i-2]=='2'&&row3[i-3]=='2')||(row5[i]=='2'&&row\
-4[i-1]=='2'&&row3[i-2]=='2'&&row2[i-3]=='2')||(row4[i]=='2'&&row3[i-1]=='2'&&row2[i-2]=='2'&&row1[i-3]=='2'))
-                    win=2; //for diagonally up left
+                  //condition to win for vertical
+                  if((row1[i]=='2'&&row1[i-1]=='2'&&row1[i-2]=='2'&&row1[i-3]=='2')
+                  ||(row2[i]=='2'&&row2[i-1]=='2'&&row2[i-2]=='2'&&row2[i-3]=='2')
+                  ||(row3[i]=='2'&&row3[i-1]=='2'&&row3[i-2]=='2'&&row3[i-3]=='2')
+                  ||(row4[i]=='2'&&row4[i-1]=='2'&&row4[i-2]=='2'&&row4[i-3]=='2')
+                  ||(row5[i]=='2'&&row5[i-1]=='2'&&row5[i-2]=='2'&&row5[i-3]=='2')
+                  ||(row6[i]=='2'&&row6[i-1]=='2'&&row6[i-2]=='2'&&row6[i-3]=='2')
+                  ||(row7[i]=='2'&&row7[i-1]=='2'&&row7[i-2]=='2'&&row7[i-3]=='2'))
+                    win=2;
+                  //condition to win for diagonally up right
+                  if((row1[i]=='2'&&row2[i-1]=='2'&&row3[i-2]=='2'&&row4[i-3]=='2')
+                  ||(row2[i]=='2'&&row3[i-1]=='2'&&row4[i-2]=='2'&&row5[i-3]=='2')
+                  ||(row3[i]=='2'&&row4[i-1]=='2'&&row5[i-2]=='2'&&row6[i-3]=='2')
+                  ||(row4[i]=='2'&&row5[i-1]=='2'&&row6[i-2]=='2'&&row7[i-3]=='2'))
+                    win=2;
+                  //condition to win for diagonally up left
+                  if((row7[i]=='2'&&row6[i-1]=='2'&&row5[i-2]=='2'&&row4[i-3]=='2')
+                  ||(row6[i]=='2'&&row5[i-1]=='2'&&row4[i-2]=='2'&&row3[i-3]=='2')
+                  ||(row5[i]=='2'&&row4[i-1]=='2'&&row3[i-2]=='2'&&row2[i-3]=='2')
+                  ||(row4[i]=='2'&&row3[i-1]=='2'&&row2[i-2]=='2'&&row1[i-3]=='2'))
+                    win=2;
                 }
-              /////////////
             }
-
-
+          //winning conditions met, display end of game congratulatons and ask whether
+          //they wish to play again
           if(win==2)
             {
               ++twoscore;
-              printf("Player 2 Wins!!!\n\nWould you like to play again? (Y/N): ");
+              printf("Player 2 Wins!\n\n Would you like to play again? (Y/N): ");
             }
           else if(win==1)
             {
               ++onescore;
-              printf("Player 1 Wins!!!\n\nWould you like to play again? (Y/N): ");
+              printf("Player 1 Wins!\n\n Would you like to play again? (Y/N): ");
             }
-
-
+          //start next game condition
           scanf("%c" ,&again);
-
-
-          while(again!='Y'&&again!='y'&&again!='N'&&again!='n')
+          while(again!='Y' && again!='y' && again!='N' && again!='n')
             {
               printf("Would you like to play again? (Y/N): ");
               scanf("%c", &again);
             }
-
-
           printf("\n\n\n\n\n\n");
-
-
           win=0;
-
-
+          //set up new values for all the rows
           for(i=1;i<7;i++)
             {
               row1[i]='O';
@@ -337,8 +393,6 @@ ow4[i]=='2')||(row5[i]=='2'&&row6[i]=='2'&&row7[i]=='2'&&row4[i]=='2'))
               row7[i]='O';
             }
         }
-
-
       printf("Thanks for Playing!\n\n");
       return 0;
     }
