@@ -54,7 +54,7 @@ int main()
               if(i>0&&i<7)
                 printf(" | %c %c %c %c %c %c %c |\n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
               if(i==6)
-                printf("  ---------------\n |               |\n\n\n");
+                printf("  ---------------\n");
             }
 
      while(win==0)
@@ -153,7 +153,7 @@ int main()
                 printf(" | %c %c %c %c %c %c %c |\n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
               //displaying end of the board
               if(i==6)
-                printf("---------------\n");
+                printf("  ---------------\n");
             }
           //winning position 1
           for(i=6;i>0;--i){
