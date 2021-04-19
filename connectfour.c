@@ -4,14 +4,14 @@
 int main()
 {
 
-
-  char row1[7]={0,0,0,0,0,0,0};
-  char row2[7]={0,0,0,0,0,0,0};
-  char row3[7]={0,0,0,0,0,0,0};
-  char row4[7]={0,0,0,0,0,0,0};
-  char row5[7]={0,0,0,0,0,0,0};
-  char row6[7]={0,0,0,0,0,0,0};
-  char row7[7]={0,0,0,0,0,0,0};
+  char s = ' ';
+  char row1[7]={s,s,s,s,s,s,s};
+  char row2[7]={s,s,s,s,s,s,s};
+  char row3[7]={s,s,s,s,s,s,s};
+  char row4[7]={s,s,s,s,s,s,s};
+  char row5[7]={s,s,s,s,s,s,s};
+  char row6[7]={s,s,s,s,s,s,s};
+  char row7[7]={s,s,s,s,s,s,s};
 
 
   int move1;
@@ -46,6 +46,7 @@ int main()
 
   while(again=='Y'||again=='y')
 {
+    
      for(i=0;i<7;i++)
             {
               if(i==0)
@@ -146,9 +147,7 @@ int main()
           //displaying the game board
           for(i=0;i<7;++i){
               if(i==0) {
-                // i believe that using d as a placeholder is causing display of number 49 to 55 in the row column, instead of 1-7
-                // however, replacing it with c placeholder (char) doesn't fix the issue
-                printf("\n\n\n %c %c %c %c %c %c %c \n --------------- \n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
+                printf("\n\n\n   %c %c %c %c %c %c %c  \n  ---------------\n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
                 }
               if(i>0 && i<7)
                 printf(" | %c %c %c %c %c %c %c |\n", row1[i], row2[i], row3[i], row4[i], row5[i], row6[i], row7[i]);
@@ -248,7 +247,7 @@ int main()
               if(move1==1)
                 {
                   j=6;
-                  while(row1[j]=='1'||row1[j]=='2'){
+                  while(row1[j]=='X'||row1[j]=='O'){
                       j--;
                    }
                   row1[j]='O';
@@ -256,7 +255,7 @@ int main()
               else if(move1==2)
                 {
                   j=6;
-                  while(row2[j]=='1'||row2[j]=='2')
+                  while(row2[j]=='X'||row2[j]=='O')
                     {
                       j--;
                     }
@@ -265,7 +264,7 @@ int main()
               else if(move1==3)
                 {
                   j=6;
-                  while(row3[j]=='1'||row3[j]=='2')
+                  while(row3[j]=='X'||row3[j]=='O')
                     {
                     j--;
                     }
@@ -274,7 +273,7 @@ int main()
               else if(move1==4)
                 {
                   j=6;
-                  while(row4[j]=='1'||row4[j]=='2')
+                  while(row4[j]=='X'||row4[j]=='O')
                     {
                       j--;
                     }
@@ -292,10 +291,10 @@ int main()
               else if(move1==6)
                 {
                   j=6;
-                  while(row6[j]=='1'||row6[j]=='2')
+                  while(row6[j]=='X'||row6[j]=='O')
                     {
                       j--;
-                      {//is this below necessary?
+                      {
                         j--;
                       }
                       row6[j]='O';
@@ -347,10 +346,10 @@ int main()
                   ||(row7[i]=='O'&&row7[i-1]=='O'&&row7[i-2]=='O'&&row7[i-3]=='O'))
                     win=2;
                   //condition to win for diagonally up right
-                  if((row1[i]=='2'&&row2[i-1]=='2'&&row3[i-2]=='2'&&row4[i-3]=='2')
-                  ||(row2[i]=='2'&&row3[i-1]=='2'&&row4[i-2]=='2'&&row5[i-3]=='2')
-                  ||(row3[i]=='2'&&row4[i-1]=='2'&&row5[i-2]=='2'&&row6[i-3]=='2')
-                  ||(row4[i]=='2'&&row5[i-1]=='2'&&row6[i-2]=='2'&&row7[i-3]=='2'))
+                  if((row1[i]=='O'&&row2[i-1]=='O'&&row3[i-2]=='O'&&row4[i-3]=='O')
+                  ||(row2[i]=='O'&&row3[i-1]=='O'&&row4[i-2]=='O'&&row5[i-3]=='O')
+                  ||(row3[i]=='O'&&row4[i-1]=='O'&&row5[i-2]=='O'&&row6[i-3]=='O')
+                  ||(row4[i]=='O'&&row5[i-1]=='O'&&row6[i-2]=='O'&&row7[i-3]=='O'))
                     win=2;
                   //condition to win for diagonally up left
                   if((row7[i]=='O'&&row6[i-1]=='O'&&row5[i-2]=='O'&&row4[i-3]=='O')
